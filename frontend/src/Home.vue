@@ -1,14 +1,9 @@
 <template>
   <div id="container">
-    <div style="grid-area:col1;">
-      <div class="side-bar">
+    <div class="side-bar">
 
-      </div>
     </div>
-    <div style="grid-area:col2; margin-left: 3em;">
-      <div style="height:3em"></div>
-      <div class="content">
-      </div>
+    <div class="content">
     </div>
   </div>
 </template>
@@ -22,17 +17,37 @@ export default {
 <style scoped>
 #container {
   margin: 0 2em 0 2em;
-  display: grid;
-  grid-template-areas: "col1 col2";
-  grid-template-columns: 300px auto;
   height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .side-bar {
+  flex-grow: 2;
+
+  display: flex;
+  flex-direction: column;
+
   background: white;
   margin-top: 1em;
-  height: 95%;
+  margin-bottom: 1em;
+  top: 0;
+  min-height: 100px;
+  max-height: 90%;
+  overflow: scroll;
 }
-.content {
-  background: black;
+.content{
+  flex-grow: 5;
+
+  display: flex;
+  flex-direction: column;
+  margin-left: 3em;
+  margin-top: 3em;
+
+  min-height: 100px;
+  max-height: 90%;
+  overflow: scroll;
 }
 </style>

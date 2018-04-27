@@ -29,4 +29,7 @@ export default {
   min-width: 100%;
   overflow: hidden;
 }
+*, *:before, *:after{
+  box-sizing: border-box;
+}
 </style>
