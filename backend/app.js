@@ -2,6 +2,7 @@ import http from 'http';
 import debug from 'debug';
 
 import express from 'express';
+import favicon from 'serve-favicon';
 import path from 'path';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
@@ -16,7 +17,7 @@ import webpackDevConfig from '../webpack.dev.babel.js';
 
 let app = express();
 
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
