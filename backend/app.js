@@ -15,6 +15,8 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackDevConfig from '../webpack.dev.babel.js';
 
+import rsc from './resource';
+
 let app = express();
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -23,6 +25,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
+
+app.use('/resource', rsc);
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(webpackDevConfig);
