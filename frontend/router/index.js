@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/Home'
+import Moments from '@/Moments'
+import Blogs from '@/Blogs'
+import Photos from '@/Photos'
+import Todos from '@/Todos'
 
 Vue.use(Router)
 
@@ -8,8 +11,24 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      alias: '/moments',
+      name: 'moments',
+      component: Moments
+    },
+    {
+      path: '/photos',
+      name: 'photos',
+      component: Photos
+    },
+    {
+      path: '/todos',
+      name: 'todos',
+      component: Todos
+    },
+    {
+      path: '/blogs',
+      name: 'blogs',
+      component: Blogs
     }
   ]
 })
