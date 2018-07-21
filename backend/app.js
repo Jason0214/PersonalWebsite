@@ -7,7 +7,6 @@ import path from 'path';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import sessionParser from 'express-session';
 
 // webpack dev config
 import webpack from 'webpack';
@@ -35,7 +34,7 @@ if (process.env.NODE_ENV === 'development') {
     publicPath: webpackDevConfig.output.publicPath
   }));
 } else {
-  let staticDirPath = path.join(__dirname, '..', '..', 'frontend', 'dist', 'prod');
+  let staticDirPath = path.join(__dirname, '..', 'frontend', 'dist', 'prod');
   app.use(express.static(staticDirPath));
 }
 
