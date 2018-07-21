@@ -45,8 +45,6 @@ app.use(function (req, res) {
   res.end();
 });
 
-
-
 // bind express app to http server
 let port = 3000;
 let server = http.createServer(app);
@@ -55,7 +53,7 @@ server.listen(port);
 server.on('listening', () => {
   let addr = server.address();
   let bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
   debug(':server')('Listening on ' + bind);
 });

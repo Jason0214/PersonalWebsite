@@ -4,8 +4,6 @@ import merge from 'webpack-merge';
 
 import common from './webpack.common.js';
 
-import CleanWebpackPlugin from 'clean-webpack-plugin';
-
 export default merge(common, {
   devtool: 'eval-source-map',
   mode: 'development',
@@ -15,33 +13,7 @@ export default merge(common, {
       './frontend/src/main.js'
     ]
   },
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: [
-            'vue-style-loader',
-            {
-              css: {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: true
-                }
-              }
-            }
-          ],
-          transformToRequire: {
-            video: 'src',
-            source: 'src',
-            img: 'src',
-            image: 'xlink:href'
-          }
-        }
-      }
-    ]
-  },
+  module: {},
   output: {
     filename: '[name].[hash:8].js',
     chunkFilename: 'chunks/[name].[hash:8].js',
@@ -49,7 +21,10 @@ export default merge(common, {
     publicPath: '/'
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.DefinePlugin({
+      'HOST_URL': JSON.stringify('localhost:3000/')
+    })
   ]
 });

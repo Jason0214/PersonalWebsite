@@ -6,11 +6,9 @@
 
 <script>
 export default {
-  name: 'todos',
+  name: 'todos'
 }
 </script>
 
 <style scoped>
-
-
 </style>

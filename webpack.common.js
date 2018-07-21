@@ -1,11 +1,14 @@
 import path from 'path';
 
 import eslintFriendlyFormatter from 'eslint-friendly-formatter';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import VueLoaderPlugin from 'vue-loader/lib/plugin.js'
+
+const devMode = process.env.NODE_ENV !== 'production'
 
 export default {
   context: path.resolve(__dirname),
-  // stat: 'minimal',
 
   entry: {
     app: './frontend/src/main.js'
@@ -61,7 +64,7 @@ export default {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
           },
           {
             loader: 'css-loader',
@@ -70,6 +73,18 @@ export default {
             }
           }
         ]
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          transformToRequire: {
+            video: 'src',
+            source: 'src',
+            img: 'src',
+            image: 'xlink:href'
+          }
+        }
       }
     ]
   },
@@ -104,15 +119,15 @@ export default {
     //     {
     //       src: path.resolve('frontend/src/assets/logo.png'),
     //       sizes: [192, 256],
-    //       destination: path.join('icos', 'android'),
+    //       destination: path.join('icons', 'android'),
     //     },
     //   ],
     // }),
-    // Generate html fil to dist folder
+    // Generate html file to dist folder
     new HtmlWebpackPlugin({
-      title: 'welcome',
-      // favicon: path.resolve(__dirname, 'frontend/src/assets/favicon.ico'),
-      template: path.resolve(__dirname, 'frontend/index.ejs')
-    })
+      template: path.resolve(__dirname, 'frontend/index.ejs'),
+      inject: true
+    }),
+    new VueLoaderPlugin()
   ]
 };

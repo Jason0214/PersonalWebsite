@@ -2,10 +2,10 @@ import sqlite3 from 'sqlite3';
 import path from 'path';
 
 class Connection {
-  constructor () {
+  constructor (dbName) {
     this.open(dbName);
   }
-  async open(dbName) {
+  async open (dbName) {
     this.db = new Promise((resolve, reject) => {
       let dbConnection = new sqlite3.Database(path.join(__dirname, '..', 'sqliteDB', dbName), (err) => {
         if (err) {
