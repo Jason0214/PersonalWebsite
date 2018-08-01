@@ -1,12 +1,12 @@
 <template>
   <div>
-    todos
+    photos
   </div>
 </template>
 
 <script>
 export default {
-  name: 'todos'
+  name: 'photos'
 }
 </script>
 

@@ -1,34 +1,33 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Moments from '@/Moments'
-import Blogs from '@/Blogs'
-import Photos from '@/Photos'
-import Todos from '@/Todos'
+import Blogs from '@/components/Blogs'
+import Photos from '@/components/Photos'
+import Moment from '@/components/Moment'
+import Home from '@/components/Home'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      alias: '/moments',
-      name: 'moments',
-      component: Moments
-    },
-    {
       path: '/photos',
       name: 'photos',
       component: Photos
     },
     {
-      path: '/todos',
-      name: 'todos',
-      component: Todos
-    },
-    {
       path: '/blogs',
       name: 'blogs',
       component: Blogs
+    },
+    {
+      path: '/moment',
+      name: 'moment',
+      component: Moment
+    },
+    {
+      path: '/',
+      name: 'home',
+      component: Home
     }
   ]
 })

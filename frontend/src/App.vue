@@ -1,49 +1,52 @@
 <template>
   <div id="app">
-    <div class="side-bar">
-      <div class="cover">
-        <span style="margin-top: 4em">tender is the night ✨</span>
-      </div>
-      <div class="avatar">
-        <img style="margin-top: 5px; border-radius: 150px" width="100px" height="100px" src="/resource/avatar"/>
-      </div>
-      <div style="margin-top: 80px;">
-        <div ref="moments" class="router-btn button" @click="goto('/moments')">Moments</div>
-        <div ref="photos" class="router-btn button" @click="goto('/photos')">Photos</div>
-        <div ref="blogs" class="router-btn button" @click="goto('/blogs')">Blogs</div>
-        <div ref="todos" class="router-btn button" @click="goto('/todos')">Crazy Thoughts</div>
-      </div>
-      <div class="icon-bar">
-        <a class="icon-btn" href="https://github.com/Jason0214" target="_blanket">
-          <i class="fa fa-github" aria-hidden="true"></i>
-        </a>
-        <a class="icon-btn" href="mailto:lujc.me@gmail.com" target="_blanket">
-          <i class="fa fa-envelope" aria-hidden="true"></i>
-        </a>
-        <a class="icon-btn" href="https://telegram.me/lu_jc" target="_blanket">
-          <i class="fa fa-telegram" aria-hidden="true"></i>
-        </a>
+    <div class="header">
+      <div class="logo"> </div>
+      <div class="routers">
+        <div class="button" v-for="(item, index) in routers" :key=index @click="goto(index)" :class="routerActive == index? item['color-class'] : null">
+          <span v-html="item['name']"></span>
+        </div>
       </div>
     </div>
-    <div class="content">
-      <router-view/>
-    </div>
+   <router-view/>
   </div>
 </template>
 
 <script>
 export default {
   name: 'app',
-  methods: {
-    goto: function (path) {
-      this.$router.push(path)
+  data () {
+    return {
+      routerActive: 0,
+      routers: [
+        {
+          'name': 'Home',
+          'url': '/',
+          'color-class': 'orange-gradient'
+        },
+        {
+          'name': 'Blog',
+          'url': '/blog',
+          'color-class': 'green-gradient'
+        },
+        {
+          'name': 'Photo',
+          'url': '/photo',
+          'color-class': 'blue-gradient'
+        },
+        {
+          'name': 'Moment',
+          'url': '/moment',
+          'color-class': 'orange-gradient'
+        }
+      ]
     }
   },
-  // mounted: function () {
-  //   this.$refs.moments.style.textDecoration = 'underline';
-  // },
-  computed: {
-
+  methods: {
+    goto: function (routerIndex) {
+      this.routerActive = routerIndex
+      this.$router.push(this.routers[routerIndex]['url'])
+    }
   }
 }
 </script>
@@ -54,99 +57,58 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-
-  position: absolute;
+  min-height: calc(100vh - 200px);
+  font-size: 16px;
+}
+.header {
+  background: #212326;
+  height: 60px;
   width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  padding: 0 2em 0 2em;
-
-  min-height: 100%;
-  min-width: 100%;
-  overflow: hidden;
-  background: #eaeaea;
-
+  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+.routers {
+  position: absolute;
+  left: 50%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  height: inherit;
+}
+.button {
+  font-size: 1.2em;
+  padding: 10px 20px 0 20px;
+  width: 5em;
+  cursor: pointer;
+  color: #9e9e9e;
+}
+.green-gradient {
+  background: linear-gradient(-15deg, limegreen, yellow);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.blue-gradient {
+  background: linear-gradient(-15deg, cyan, violet);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.orange-gradient {
+  background: linear-gradient(-15deg, #f16581, orange);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 *, *:before, *:after{
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background-repeat: no-repeat;
 }
-a {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-.side-bar {
-  width: 300px;
-
-  display: flex;
-  flex-direction: column;
-
+body {
+  margin: 0 0 0 0;
   background: white;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  top: 0;
-  min-height: 100px;
-  max-height: 90%;
-  overflow: scroll;
-  padding-bottom: 2em;
 }
-.cover {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
-  background: teal;
-  height: 200px;
-  color: white;
-  z-index: 1;
-}
-.avatar {
-  position: absolute;
-  align-self: center;
-  background: white;
-  margin-top: 145px;
-  height: 110px;
-  width: 110px;
-  border-radius: 160px;
-  z-index: 5;
-}
-.content {
-  flex-grow: 1;
-  width: auto;
-  background: white;
-
-  display: flex;
-  flex-direction: column;
-  margin-left: 3em;
-  margin-top: 3em;
-
-  min-height: 100px;
-  max-height: 90%;
-  overflow: scroll;
-}
-.router-btn {
-  margin: 1em 4em 1em 4em;
-  cursor: pointer;
-}
-.icon-bar {
-  margin: 4em 1em 2em 1em;
-  padding: 0 1em 0 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border-color: lightgrey;
-  border-bottom-style: solid;
-  border-width: 1px;
-}
-.icon-btn {
-  flex-grow: 1;
-  font-size: 1.5em;
-}
-.button:hover {
-  color: coral;
+@media only screen and (max-width: 768px) {
+  #app {
+    font-size: 2vw;
+  }
 }
 </style>
