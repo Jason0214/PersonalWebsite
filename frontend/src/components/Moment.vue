@@ -3,7 +3,7 @@
     <div class="box">
       <div class="message">
         <div class="message-avatar">
-          <img style="border-radius:4px" width="40px" height="40px" src="/resource/avatar"/>
+          <img style="border-radius:4px" width="40px" height="40px" :src="require('../../assets/avatar.jpg')"/>
         </div>
         <div class="message-bubble">
           <div style="display: flex; flex-direction: column; width: 100%">
@@ -20,7 +20,7 @@
         <div class="comments-panel" v-if="openCommit == true">
             <div class="comment">
               <div class="message-avatar">
-                <img style="border-radius:4px" width="30px" height="30px" src="/resource/avatar"/>
+                <img style="border-radius:4px" width="30px" height="30px" :src="require('../../assets/avatar.jpg')"/>
               </div>
               <div class="comment-content">
                 lalalalala

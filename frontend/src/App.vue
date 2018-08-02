@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div class="header">
-      <div class="logo"> </div>
+      <div class="logo">
+      </div>
       <div class="routers">
         <div class="button" v-for="(item, index) in routers" :key=index @click="goto(index)" :class="routerActive == index? item['color-class'] : null">
           <span v-html="item['name']"></span>
@@ -65,6 +66,12 @@ export default {
   height: 60px;
   width: 100%;
   box-shadow: 0 2px 4px rgba(0,0,0,.5);
+  transition: top 0.3s;
+}
+.logo {
+  left: 2%;
+  position: absolute;
+  margin-top: 2px;
 }
 .routers {
   position: absolute;
@@ -105,6 +112,9 @@ export default {
 body {
   margin: 0 0 0 0;
   background: white;
+}
+a {
+  text-decoration: none;
 }
 @media only screen and (max-width: 768px) {
   #app {
