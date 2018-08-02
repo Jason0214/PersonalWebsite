@@ -13,12 +13,9 @@
     </div>
     <br/>
     <div class="highlight-text">
-      <span>This site is in Experimental use, </span>
+      <span>This site is in experimental use, </span>
       <br/>
-      <span>if issues are found, welcome to report to </span>
-      <a style="display: inline" href="https://github.com/Jason0214/PersonalWebsite/issues">
-        <i class="fa fa-code" aria-hidden="true"></i>
-      </a>
+      <span>so enjoy your time with tons of bugs :) </span>
     </div>
   </div>
 </template>
