@@ -8,10 +8,10 @@
         <div class="message-bubble">
           <div style="display: flex; flex-direction: column; width: 100%">
             <div class="message-header">
-              Jason edited at 2017
+              Jason posted at 2017
             </div>
             <div class="message-content">
-              alalalalalalasdfasdfasdfasdgasgdasfasddddddf asdfga gasgasgasdf agasdg asdg  alll
+              test test
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
                 <img style="border-radius:4px" width="30px" height="30px" :src="require('../../assets/avatar.jpg')"/>
               </div>
               <div class="comment-content">
-                lalalalala
+                test test
               </div>
             </div>
             <div class="new-comment">
@@ -62,6 +62,8 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   padding: 3em 2em 3em 2em;
+  max-width: 800px;
+  margin: 0 auto;
 }
 .message {
   display: flex;
