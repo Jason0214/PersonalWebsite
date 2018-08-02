@@ -1,7 +1,7 @@
 import sqlite3 from 'sqlite3';
 import path from 'path';
 
-class Connection {
+class DBConnection {
   constructor (dbName) {
     this.open(dbName);
   }
@@ -48,4 +48,4 @@ class Connection {
   }
 };
 
-export default Connection;
+export default DBConnection;

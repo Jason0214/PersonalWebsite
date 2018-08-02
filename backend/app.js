@@ -14,7 +14,8 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackDevConfig from '../webpack.dev.babel.js';
 
-import rsc from './resource';
+// modules
+import blog from './modules/blog';
 
 let app = express();
 
@@ -25,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
-app.use('/resource', rsc);
+app.use('/blog', blog);
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(webpackDevConfig);
