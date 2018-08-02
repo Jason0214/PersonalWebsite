@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
-    <div class="header">
+    <div class="header" ref="header">
       <div class="logo">
       </div>
       <div class="routers">
@@ -20,6 +20,7 @@ export default {
   data () {
     return {
       routerActive: 0,
+      yOffset: 0,
       routers: [
         {
           'name': 'Home',
@@ -48,7 +49,20 @@ export default {
     goto: function (routerIndex) {
       this.routerActive = routerIndex
       this.$router.push(this.routers[routerIndex]['url'])
+    },
+    handleScroll: function (event) {
+      let currentScrollPos = window.pageYOffset
+      console.log(currentScrollPos)
+      if (this.yOffset > currentScrollPos) {
+        this.$refs.header.style.top = '0'
+      } else {
+        this.$refs.header.style.top = '-60px'
+      }
+      this.yOffset = currentScrollPos
     }
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll)
   }
 }
 </script>
@@ -67,7 +81,8 @@ export default {
   height: 60px;
   width: 100%;
   box-shadow: 0 2px 4px rgba(0,0,0,.5);
-  transition: top 0.3s;
+  position: fixed;
+  transition: top 150ms ease-in-out, box-shadow 1s ease-in-out;
 }
 .logo {
   left: 2%;
