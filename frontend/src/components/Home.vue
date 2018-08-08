@@ -50,6 +50,8 @@ export default {
   display: block;
   overflow: hidden;
   height: 105vh;
+  min-height: 400px;
+  max-width: 100%;
 }
 .content-background {
   z-index: -2;
