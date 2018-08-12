@@ -22,9 +22,6 @@ export default merge(common, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new webpack.DefinePlugin({
-      'HOST_URL': JSON.stringify('localhost:3000/')
-    })
+    new webpack.NamedModulesPlugin()
   ]
 });

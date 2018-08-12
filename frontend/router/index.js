@@ -4,6 +4,7 @@ import Blogs from '@/components/Blogs'
 import Photos from '@/components/Photos'
 import Moment from '@/components/Moment'
 import Home from '@/components/Home'
+import BlogPost from '@/components/BlogPost'
 
 Vue.use(Router)
 
@@ -15,7 +16,7 @@ export default new Router({
       component: Photos
     },
     {
-      path: '/blogs',
+      path: '/blog',
       name: 'blogs',
       component: Blogs
     },
@@ -28,6 +29,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/blogpost/:id',
+      name: 'blogpost',
+      component: BlogPost
     }
   ]
 })
