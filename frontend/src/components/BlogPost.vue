@@ -8,7 +8,7 @@
 import VueMarkdown from 'vue-markdown'
 import Api from '@/api.js'
 export default {
-  name: 'blogpage',
+  name: 'blogpost',
   data () {
     return {
       markdownText: ''

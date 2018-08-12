@@ -15,7 +15,7 @@ export default {
   name: 'blogs',
   methods: {
     gotoPost () {
-      this.$router.push('blogpost/testcase0.md')
+      this.$router.push('/blog/testcase0.md')
     }
   }
 }
@@ -25,7 +25,7 @@ export default {
 .post-container {
   margin-top: 1em;
   width: 60%;
-  min-width: 350px;
+  min-width: 320px;
   max-width: 850px;
   position: relative;
   margin-left: auto;
