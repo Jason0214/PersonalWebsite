@@ -15,18 +15,19 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackDevConfig from '../webpack.dev.babel.js';
 
 // modules
-import blog from './modules/blog';
+import routers from './routers';
 
 let app = express();
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
-app.use('/blog', blog);
+app.use('/static', express.static(path.join(__dirname, 'static')));
+app.use('/', routers);
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(webpackDevConfig);
@@ -34,9 +35,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackDevConfig.output.publicPath
   }));
-} else {
-  let staticDirPath = path.join(__dirname, '..', 'frontend', 'dist', 'prod');
-  app.use(express.static(staticDirPath));
 }
 
 app.use(function (req, res) {

@@ -25,7 +25,6 @@ export default {
     return new Promise((resolve, reject) => {
       fileSystem.unlink(filePath, function (err) {
         if (err) {
-          console.log(err);
           reject(err);
         }
         resolve(true);
