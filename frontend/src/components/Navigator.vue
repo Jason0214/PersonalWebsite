@@ -73,7 +73,8 @@ export default {
 .button {
   font-size: 1.2em;
   font-weight: 500;
-  padding: 10px 20px 0 20px;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
   width: 6em;
   cursor: pointer;
   color: #9e9e9e;
