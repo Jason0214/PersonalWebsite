@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     <navigator></navigator>
     <router-view/>
   </div>

