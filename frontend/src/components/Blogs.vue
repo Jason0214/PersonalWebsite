@@ -1,21 +1,38 @@
 <template>
   <div class="post-container">
-    <div class="post-card" @click="gotoPost()">
-      <img class="post-avatar" src="/static/disorder.jpg" />
+    <div class="post-card" v-for="(blog, index) in blogs" :key="index" @click="gotoPost(index)">
+      <img class="post-avatar" :src="blog.cover" />
       <div style="flex-grow: 1;">
-        <div class="post-title">lalalalalalalala</div>
-        <div class="post-snippet">lalalalalalalaalalaal</div>
+        <div class="post-title">{{blog.title}}</div>
+        <div class="post-snippet">{{blog.abstract}}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Api from '@/api.js'
 export default {
   name: 'blogs',
+  data () {
+    return {
+      blogs: []
+    }
+  },
+  mounted () {
+    this.getBlogList()
+      .then((blogList) => {
+        this.blogs = blogList
+      })
+  },
   methods: {
-    gotoPost () {
-      this.$router.push('/blog/testcase0.md')
+    gotoPost: function (blogIndex) {
+      let blogId = this.blogs[blogIndex].id
+      this.$router.push('/blog/' + blogId)
+    },
+    getBlogList: async function () {
+      let response = await Api().get('/blog')
+      return response['data']
     }
   }
 }

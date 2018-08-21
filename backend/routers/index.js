@@ -1,20 +1,18 @@
 import { Router } from 'express';
-import blog from 'models/blog';
+import { getAllBlogs, getBlogText } from 'models/blog';
 
 const router = Router();
 
-router.get('/blog', function (req, res, next) {
-  res.json([
-    {
-      id: '0',
-      name: 'testcase0.md'
-    }
-  ]);
+router.get('/blog', async function (req, res, next) {
+  let blogs = await getAllBlogs();
+  console.log(blogs);
+  res.json(blogs);
 });
 
 router.get('/blog/get', async function (req, res, next) {
-  let name = req.query['name'];
-  let mdTxt = await blog.getMarkDownTxt(name);
+  let blogId = req.query['id'];
+  let mdTxt = await getBlogText(blogId);
+  console.log(mdTxt);
   res.json({
     'text': mdTxt
   });
