@@ -42,6 +42,7 @@ export default {
 .text-background {
   background: #e8e6e3;
   margin-top: 4px;
+  height: 100%;
 }
 .text-container {
   text-align: left;
@@ -50,6 +51,7 @@ export default {
   max-width: 1000px;
   padding-left: 4em;
   padding-right: 4em;
+  padding-bottom: 2em;
   margin-left: auto;
   margin-right: auto;
   overflow-y: scroll;

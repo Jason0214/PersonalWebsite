@@ -63,6 +63,7 @@ export default {
   justify-content: flex-start;
   padding: 3em 2em 3em 2em;
   max-width: 800px;
+  min-width: 300px;
   margin: 0 auto;
 }
 .message {

@@ -44,6 +44,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   overflow: scroll;
+  min-height: calc(100vh - 200px);
 }
 .main-content {
   flex-grow: 3;

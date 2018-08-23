@@ -22,8 +22,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  min-height: calc(100vh - 200px);
   font-size: 16px;
+  height: 100vh;
 }
 body {
   margin: 0 0 0 0;
