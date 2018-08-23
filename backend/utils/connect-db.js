@@ -7,7 +7,7 @@ class DBConnection {
   }
   async open (dbName) {
     this.db = new Promise((resolve, reject) => {
-      let dbConnection = new sqlite3.Database(path.join(__dirname, '..', dbName), (err) => {
+      let dbConnection = new sqlite3.Database(path.join(__dirname, '..', 'database', dbName), (err) => {
         if (err) {
           reject(err);
         } else {

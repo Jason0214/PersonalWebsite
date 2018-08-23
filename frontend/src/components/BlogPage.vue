@@ -11,15 +11,14 @@ import VueMarkdown from 'vue-markdown'
 import Prism from 'prismjs'
 import Api from '@/api.js'
 export default {
-  name: 'blogpost',
+  name: 'blogpage',
   data () {
     return {
       markdownText: ''
     }
   },
   mounted () {
-    // let blogId = this.$route.params.id
-    this.getMarkdownTxt('testcase0.md')
+    this.getMarkdownTxt(this.$route.params.id)
       .then(data => {
         this.markdownText = data
       })
@@ -31,8 +30,8 @@ export default {
     VueMarkdown
   },
   methods: {
-    getMarkdownTxt: async function (postName) {
-      let response = await Api().get('/blog/get?name=' + postName)
+    getMarkdownTxt: async function (blogId) {
+      let response = await Api().get('/blog/get?id=' + blogId)
       return response.data['text']
     }
   }

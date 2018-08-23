@@ -4,7 +4,7 @@ import Blogs from '@/components/Blogs'
 import Photos from '@/components/Photos'
 import Moment from '@/components/Moment'
 import Home from '@/components/Home'
-import BlogPost from '@/components/BlogPost'
+import BlogPage from '@/components/BlogPage'
 
 Vue.use(Router)
 
@@ -32,8 +32,8 @@ export default new Router({
     },
     {
       path: '/blog/:id',
-      name: 'blogpost',
-      component: BlogPost
+      name: 'blogpage',
+      component: BlogPage
     }
   ]
 })

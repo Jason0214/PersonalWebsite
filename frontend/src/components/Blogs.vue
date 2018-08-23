@@ -1,10 +1,10 @@
 <template>
-  <div class="post-container">
-    <div class="post-card" v-for="(blog, index) in blogs" :key="index" @click="gotoPost(index)">
-      <img class="post-avatar" :src="blog.cover" />
+  <div class="blog-container">
+    <div class="blog-card" v-for="(blog, index) in blogs" :key="index" @click="gotoBlogPage(index)">
+      <img class="blog-avatar" :src="blog.cover" />
       <div style="flex-grow: 1;">
-        <div class="post-title">{{blog.title}}</div>
-        <div class="post-snippet">{{blog.abstract}}</div>
+        <div class="blog-title">{{blog.title}}</div>
+        <div class="blog-snippet">{{blog.abstract}}</div>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@ export default {
       })
   },
   methods: {
-    gotoPost: function (blogIndex) {
+    gotoBlogPage: function (blogIndex) {
       let blogId = this.blogs[blogIndex].id
       this.$router.push('/blog/' + blogId)
     },
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped>
-.post-container {
+.blog-container {
   margin-top: 1em;
   width: 60%;
   min-width: 320px;
@@ -57,7 +57,7 @@ export default {
   align-self: center;
   overflow: scroll;
 }
-.post-card {
+.blog-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-top-color: #efefef;
   border-top-style: solid;
@@ -72,37 +72,37 @@ export default {
   justify-content: flex-start;
   margin: 10px 0 10px 0;
 }
-.post-card:hover {
+.blog-card:hover {
   box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
 }
-.post-avatar {
+.blog-avatar {
   max-height: inherit;
   width: auto;
   height: auto;
   border-radius: inherit;
 }
-.post-title {
+.blog-title {
   font-size: 2em;
   font-weight: bold;
   margin-top: 0.25em;
   margin-bottom: 0.25em;
 }
-.post-snippet {
+.blog-snippet {
   text-align: left;
   padding: 0 1em 0 1em;
 }
 @media only screen and (max-width: 1024px) {
-  .post-container {
+  .blog-container {
     width: 80%;
   }
 }
 @media only screen and (max-width: 768px) {
-  .post-card {
+  .blog-card {
     max-height: 100px;
   }
 }
 @media only screen and (max-width: 425px) {
-  .post-card {
+  .blog-card {
     max-height: 80px;
   }
 }
