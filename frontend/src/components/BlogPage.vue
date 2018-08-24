@@ -42,7 +42,7 @@ export default {
 .text-background {
   background: #e8e6e3;
   margin-top: 4px;
-  height: 100%;
+  min-height: 100%;
 }
 .text-container {
   text-align: left;
