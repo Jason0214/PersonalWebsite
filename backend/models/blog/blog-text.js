@@ -1,10 +1,12 @@
 import path from 'path';
 import fs from 'utils/promise-fs';
+import { rewriteImageUrl, getBlogTitle, getBlogCover, getBlogAbstract } from './text-parser';
+import { insertBlogHeader } from './blog-database';
 
-const blogStorage = path.join(__dirname, 'storage');
+const blogPostsStorage = path.join(__dirname, 'posts');
 
 function blogId2FilePath (blogId) {
-  return path.join(blogStorage, blogId + '.md');
+  return path.join(blogPostsStorage, blogId + '.md');
 }
 
 async function getBlogText (blogId) {
@@ -19,10 +21,21 @@ async function getBlogText (blogId) {
 }
 
 async function updateBlogText (blogId, newText) {
+  // TODO
   await fs.saveToFile(blogId2FilePath(blogId), newText);
+}
+
+async function addNewBlog (newText) {
+  let parsedText = await rewriteImageUrl(newText);
+  let title = getBlogTitle(parsedText);
+  let abstract = getBlogAbstract(parsedText);
+  let cover = getBlogCover(parsedText);
+  let blogId = await insertBlogHeader(title, abstract, cover);
+  await fs.saveToFile(blogId2FilePath(blogId), parsedText);
 }
 
 export {
   getBlogText,
+  addNewBlog,
   updateBlogText
 };

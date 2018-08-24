@@ -19,7 +19,7 @@ class DBConnection {
   async query (sqlSentence, argList) {
     this.db = await this.db;
     return new Promise((resolve, reject) => {
-      this.db.all(sqlSentence, argList, (err, rows) => {
+      this.db.all(sqlSentence, argList, function (err, rows) {
         if (err) {
           reject(err);
         } else {
@@ -31,12 +31,12 @@ class DBConnection {
   async mutation (sqlSentence, argList) {
     this.db = await this.db;
     return new Promise((resolve, reject) => {
-      this.db.run(sqlSentence, argList, (err) => {
+      this.db.run(sqlSentence, argList, function (err) {
         if (err) {
           console.log(err);
           reject(err);
         } else {
-          resolve();
+          resolve(this.lastID);
         }
       });
     });

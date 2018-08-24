@@ -14,7 +14,7 @@ function downloadImage (imageUrl) {
       } else {
         let mimeType = res.headers['content-type'].split('/');
         if (mimeType[0] !== 'image') {
-          reject(new Error('Error: not return a image from ' + imageUrl));
+          reject(new Error('not return a image from ' + imageUrl));
         } else {
           let extension = '.' + mimeType[1];
           let tmpFileName = Buffer.from(imageUrl).toString('base64') + Date.now();
@@ -84,8 +84,18 @@ function getBlogAbstract (blogText) {
   return abstractMatch[1];
 }
 
+function getBlogCover (blogText) {
+  const coverPathRegex = /!\[[^\]]+\]\(([^)]+)\)/;
+  let coverPathMatch = coverPathRegex.exec(blogText);
+  if (coverPathMatch === null) {
+    return '/static/defaultCover.jpg';
+  }
+  return coverPathMatch[1];
+}
+
 export {
   rewriteImageUrl,
   getBlogTitle,
+  getBlogCover,
   getBlogAbstract
 };

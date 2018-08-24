@@ -17,19 +17,23 @@ function blogHeaderFactory (dbResult) {
   );
 }
 
+async function insertBlogHeader (title, abstract, cover) {
+  let db = new DBConnection(blogDatabase);
+  let newBlogId = await db.mutation(
+    `INSERT INTO blogs (title, abstract, edit_time, cover_path) VALUES(?, ?, DATETIME(), ?)`,
+    [title, abstract, cover]
+  );
+  db.close();
+  return newBlogId;
+}
+
 async function updateBlogHeader (blogHeader) {
   let db = new DBConnection(blogDatabase);
-  if (blogHeader.id === undefined) {
-    await db.mutation(
-      `INSERT INTO blogs (title, abstract, edit_time, cover_path) VALUES(?, ?, DATETIME(), ?)`,
-      [blogHeader.title, blogHeader.abstract, blogHeader.cover]
-    );
-  } else if (blogHeader.is_dirty) {
-    await db.mutation(
-      `UPDATE blogs SET title = ?, abstract = ?, edit_time = DATETIME(), cover_path = ? WHERE id = ?`,
-      [blogHeader.title, blogHeader.abstract, blogHeader.cover, blogHeader.id]
-    );
-  }
+  await db.mutation(
+    `UPDATE blogs SET title = ?, abstract = ?, edit_time = DATETIME(), cover_path = ? WHERE id = ?`,
+    [blogHeader.title, blogHeader.abstract, blogHeader.cover, blogHeader.id]
+  );
+  db.close();
 }
 
 async function getBlogHeader (blogId) {
@@ -48,6 +52,7 @@ async function getAllBlogHeaders () {
 
 export {
   resetBlogDatabase,
+  insertBlogHeader,
   updateBlogHeader,
   getBlogHeader,
   getAllBlogHeaders
