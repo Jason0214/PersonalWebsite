@@ -4,7 +4,7 @@
   "description": "personal site",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=backend/ mocha --compilers js:babel-core/register ./test/backend/*.js",
+    "test": "NODE_PATH=backend/ mocha --timeout 3000  --compilers js:babel-core/register ./test/backend/*.js",
     "build": "webpack --config webpack.prod.babel.js",
     "dev": "NODE_ENV=development NODE_PATH=backend/ babel-node backend/app.js",
     "server": "babel-node backend/app.js"
@@ -42,6 +42,7 @@
     "optimize-css-assets-webpack-plugin": "^4.0.0",
     "path": "^0.12.7",
     "prismjs": "^1.15.0",
+    "request": "^2.88.0",
     "serve-favicon": "^2.5.0",
     "sqlite3": "^4.0.2",
     "style-loader": "^0.21.0",
