@@ -4,7 +4,7 @@
   "description": "personal site",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=backend/ mocha --timeout 3000  --compilers js:babel-core/register ./test/backend/*.js",
+    "test": "NODE_PATH=backend/ mocha --timeout 5000  --compilers js:babel-core/register ./test/backend/*.js",
     "build": "webpack --config webpack.prod.babel.js",
     "dev": "NODE_ENV=development NODE_PATH=backend/ babel-node backend/app.js",
     "server": "babel-node backend/app.js"

@@ -45,10 +45,10 @@ describe('database tests', function () {
 
     let newBlogInDb = await getBlogHeader(1);
 
-    assert(newBlogInDb.id === 1)
-    assert(newBlog.title === newBlogInDb.title);
-    assert(newBlog.abstract === newBlogInDb.abstract);
-    assert(newBlog.cover === newBlogInDb.cover);
+    assert.strictEqual(newBlogInDb.id, 1)
+    assert.strictEqual(newBlog.title, newBlogInDb.title);
+    assert.strictEqual(newBlog.abstract, newBlogInDb.abstract);
+    assert.strictEqual(newBlog.cover, newBlogInDb.cover);
   })
 
   it('get all blogs from database', async function () {
@@ -78,10 +78,10 @@ describe('database tests', function () {
 
     assert(blogList.length === testCases.length);
     for (let i = 0; i < blogList.length; i++) {
-      assert(blogList[i].id === i + 1);
-      assert(blogList[i].title === testCases[i].title);
-      assert(blogList[i].abstract === testCases[i].abstract);
-      assert(blogList[i].cover === testCases[i].cover);
+      assert.strictEqual(blogList[i].id, i + 1);
+      assert.strictEqual(blogList[i].title, testCases[i].title);
+      assert.strictEqual(blogList[i].abstract, testCases[i].abstract);
+      assert.strictEqual(blogList[i].cover, testCases[i].cover);
     }
   })
 
@@ -95,16 +95,16 @@ describe('database tests', function () {
     await updateBlogHeader(newBlogHeader);
 
     let blogFromDB = await getBlogHeader(1);
-    assert(blogFromDB.id === 1);
-    assert(blogFromDB.title === newBlogHeader.title);
+    assert.strictEqual(blogFromDB.id, 1);
+    assert.strictEqual(blogFromDB.title, newBlogHeader.title);
 
     let changed_title = 'test blog title changed';
     blogFromDB.title = changed_title;
     await updateBlogHeader(blogFromDB);
 
     blogFromDB = await getBlogHeader(1);
-    assert(blogFromDB.id === 1);
-    assert(blogFromDB.title === changed_title);
+    assert.strictEqual(blogFromDB.id, 1);
+    assert.strictEqual(blogFromDB.title, changed_title);
   })
 
   afterEach(async function () {
