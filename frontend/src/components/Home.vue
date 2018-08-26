@@ -7,7 +7,7 @@
           <span class="content-title">About Me</span>
           <br/>
           <ul class="content-text">
-            <li>Beliver of Florence + The Machine🤖 </li>
+            <li>Believer of Florence + The Machine🤖 </li>
             <li>WarThunder player, poilet of Spitfire🇬🇧</li>
             <li>Fan of Boston Celtics🏀 (Jayson Tatum rocks!!</li>
             <li>Mostly live in the night, <span style="font-style:italic">Tender Is The Night✨</span></li>
