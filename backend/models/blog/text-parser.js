@@ -88,7 +88,7 @@ function getBlogCover (blogText) {
   const coverPathRegex = /!\[[^\]]+\]\(([^)]+)\)/;
   let coverPathMatch = coverPathRegex.exec(blogText);
   if (coverPathMatch === null) {
-    return '/static/defaultCover.jpg';
+    return '/static/defaultCover.png';
   }
   return coverPathMatch[1];
 }

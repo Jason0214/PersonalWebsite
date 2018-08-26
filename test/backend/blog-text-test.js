@@ -28,11 +28,11 @@ describe('test blog text parser functions', function () {
 
   it("get default cover if no image in blog", function () {
     let text = "aaaaaa";
-    assert.strictEqual(getBlogCover(text), "/static/defaultCover.jpg");
+    assert.strictEqual(getBlogCover(text), "/static/defaultCover.png");
   })
 
   it("ensure default cover exists", function () {
-    let imageLocalPath = path.join(rootDir, '/static/defaultCover.jpg');
+    let imageLocalPath = path.join(rootDir, '/static/defaultCover.png');
     assert(fs.existsSync(imageLocalPath));
   })
 

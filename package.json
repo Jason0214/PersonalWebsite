@@ -7,7 +7,7 @@
     "test": "NODE_PATH=backend/ mocha --timeout 5000  --compilers js:babel-core/register ./test/backend/*.js",
     "build": "webpack --config webpack.prod.babel.js",
     "dev": "NODE_ENV=development NODE_PATH=backend/ babel-node backend/app.js",
-    "server": "babel-node backend/app.js"
+    "server": "NODE_PATH=backend/ babel-node backend/app.js"
   },
   "author": "Jason <lujc.me@gmail.com>",
   "license": "MIT",
