@@ -40,7 +40,7 @@ export default {
 }
 .dropdown-btn {
   display: none;
-  position: fixed;
+  position: absolute;
   font-size: 30px;
   color: #efefef;
   width: 40px;

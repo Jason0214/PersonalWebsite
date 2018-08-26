@@ -8,7 +8,7 @@
 
 <script>
 import VueMarkdown from 'vue-markdown'
-import Prism from 'prismjs'
+import Prism from '@/prism/prism.js'
 import Api from '@/api.js'
 export default {
   name: 'blogpage',
@@ -97,14 +97,18 @@ h1 {
   font-weight: 200;
   font-size: 3em;
   padding: 2em 0 4px 0;
-  border-bottom: solid 1px #eeeeee;
+  border-bottom: solid 1px #dedede;
 }
 h2 {
   font: "Source Sans Pro", Georgia, serif;
-  font-weight: 300;
-  font-size: 1.75em;
-  padding: 0 0 2px 30px;
+  font-size: 2em;
+  margin-top: 2em;
+}
+h3 {
   margin-top: 1.5em;
-  border-left: solid 8px rgb(45, 55, 71);;
+  font: "Source Sans Pro", Georgia, serif;
+}
+code {
+  background: #efefefef;
 }
 </style>

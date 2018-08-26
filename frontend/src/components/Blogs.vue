@@ -77,12 +77,13 @@ export default {
 }
 .blog-avatar {
   max-height: inherit;
+  max-width: 30%;
   width: auto;
   height: auto;
   border-radius: inherit;
 }
 .blog-title {
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: bold;
   margin-top: 0.25em;
   margin-bottom: 0.25em;

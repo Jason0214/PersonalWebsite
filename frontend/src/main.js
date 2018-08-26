@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from '../router'
-import 'prismjs/themes/prism.css'
+import '@/prism/prism.css'
 
 Vue.config.productionTip = false
 
