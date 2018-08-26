@@ -17,7 +17,7 @@ These moderns devices include **Raspberry Pi**, **Beagle Bone**, etc. On these d
 ### Cross Compile Embedded Python C Program on Beagle Bone Green
 
 Here I use an example of Beagle Bone Green which is arm architecture running debian.
-![BBG](/static/ed591660ca9dd00aa022a591eca709b4.jpeg)
+![BBG](https://cdn.shopify.com/s/files/1/0735/0383/products/cc24c4c62bd73acd1dcc4ee7ad71b104.image.530x397_1024x1024.jpeg?v=1523787730)
 
 
 There are three helpful tools to find out all the header files and static libs used by python:
