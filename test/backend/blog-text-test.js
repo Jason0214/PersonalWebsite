@@ -1,7 +1,7 @@
 import fs from 'fs';
 import assert from 'assert';
 import path from 'path';
-import { rewriteImageUrl, getBlogCover, getBlogTitle, getBlogAbstract } from 'models/blog/text-parser';
+import { rewriteImageUrl, generateBlogCover, getBlogTitle, getBlogAbstract } from 'models/blog/text-parser';
 
 const rootDir = path.join(__dirname, '..', '..', 'backend');
 const  imageUrlRegex = /!\[([^\]]+)\]\(([^)]+)\)/;
@@ -21,14 +21,9 @@ describe('test blog text parser functions', function () {
     assert.strictEqual(getBlogAbstract(text), 'This is the abstract.');
   })
 
-  it("get first image path from blog text as cover", function () {
-    let text = "aaaaa![aaa](/static/testcover.jpg)";
-    assert.strictEqual(getBlogCover(text), "/static/testcover.jpg");
-  })
-
-  it("get default cover if no image in blog", function () {
+  it("get default cover if no image in blog", async function () {
     let text = "aaaaaa";
-    assert.strictEqual(getBlogCover(text), "/static/defaultCover.png");
+    assert.strictEqual(await generateBlogCover(text), "/static/defaultCover.png");
   })
 
   it("ensure default cover exists", function () {

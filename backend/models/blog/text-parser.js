@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import request from 'request';
 import crypto from 'crypto';
+import gm from 'gm';
 
 const ImageStorageDir = path.join(__dirname, '..', '..', 'static');
 
@@ -42,26 +43,60 @@ function downloadImage (imageUrl) {
   });
 }
 
+function generateThumbNail (srcPath, width, height, outputPath, quality = 75) {
+  return new Promise((resolve, reject) => {
+    gm(srcPath).resize(width, height, '^').gravity('center').extent(width, height).quality(75).write(outputPath, function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
 async function rewriteImageUrl (markdownText) {
   // reference: https://stackoverflow.com/questions/33631041/javascript-async-await-in-replace
   const imageUrlPromises = [];
   const imageUrlRegex = /!\[([^\]]+)\]\(([^)]+)\)/;
   markdownText.replace(imageUrlRegex, function (match, g1, g2) {
-    let newImageUrlPromise = downloadImage(g2)
-      .then((imageFileName) => {
-        return '/static/' + imageFileName;
-      })
-      .catch((err) => {
-        console.log(err.toString());
-        return '/static/NotFound.png';
-      });
-    imageUrlPromises.push(newImageUrlPromise);
+    if (!g2.startsWith('/static/')) {
+      let newImageUrlPromise = downloadImage(g2)
+        .then((imageFileName) => {
+          return '/static/' + imageFileName;
+        })
+        .catch((err) => {
+          console.log(err.toString());
+          return '/static/NotFound.png';
+        });
+      imageUrlPromises.push(newImageUrlPromise);
+    } else {
+      imageUrlPromises.push(g2);
+    }
     return match;
   });
   const data = await Promise.all(imageUrlPromises);
   return markdownText.replace(imageUrlRegex, function (match, g1, g2) {
     return '![' + g1 + '](' + data.shift() + ')';
   });
+}
+
+async function generateBlogCover (blogText) {
+  const coverPathRegex = /!\[[^\]]+\]\(([^)]+)\)/;
+  let coverPathMatch = coverPathRegex.exec(blogText);
+  if (coverPathMatch === null) {
+    return '/static/defaultCover.png';
+  }
+
+  let imgFileName = path.basename(coverPathMatch[1]);
+  let imgNameAndExtension = imgFileName.split('.');
+  let coverFileName = imgNameAndExtension[0] + '_cover.' + imgNameAndExtension[1];
+  await generateThumbNail(
+    path.join(ImageStorageDir, imgFileName),
+    200, 200,
+    path.join(ImageStorageDir, coverFileName)
+  );
+  return '/static/' + coverFileName;
 }
 
 function getBlogTitle (blogText) {
@@ -84,18 +119,9 @@ function getBlogAbstract (blogText) {
   return abstractMatch[1];
 }
 
-function getBlogCover (blogText) {
-  const coverPathRegex = /!\[[^\]]+\]\(([^)]+)\)/;
-  let coverPathMatch = coverPathRegex.exec(blogText);
-  if (coverPathMatch === null) {
-    return '/static/defaultCover.png';
-  }
-  return coverPathMatch[1];
-}
-
 export {
   rewriteImageUrl,
   getBlogTitle,
-  getBlogCover,
+  generateBlogCover,
   getBlogAbstract
 };

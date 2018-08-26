@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ "$#" -ne 1 ]; then
-    echo "Error: Wrong arguments number, require only the filename of the blog need to be posted."
+if [ "$#" -ne 2 ]; then
+    echo "Error: Wrong arguments number, requires two."
 fi
 
 case "$OSTYPE" in
@@ -19,12 +19,14 @@ else
     sep="/"
 fi
 
-workingDir=$(pwd)
-blogFileName="$1"
-blogPath=${workingDir}${sep}${blogFileName}
-
 binDir=$(dirname "$0")
-postJsPath=${binDir}${sep}"post.js"
 nodePath=${binDir}${sep}".."
 
-NODE_PATH=${nodePath} npx babel-node ${postJsPath} ${blogPath}
+commandName="$1"
+commandScript=${binDir}${sep}${commandName}".js"
+
+workingDir=$(pwd)
+fileRelPath="$2"
+fileAbsPath=${workingDir}${sep}${fileRelPath}
+
+NODE_PATH=${nodePath} npx babel-node ${commandScript} ${fileAbsPath}
