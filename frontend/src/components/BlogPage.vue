@@ -55,6 +55,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   overflow-y: scroll;
+  overflow-x: hidden;
   font-family: "Merriweather", Georgia, serif;
   font-size: 0.9em;
   box-shadow: 0 0 30px rgba(71, 51, 31, 0.05);

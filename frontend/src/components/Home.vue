@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="main-content">
-      <img class="content-background" :src="require('../../assets/selfie.jpg')"/>
+      <img class="content-background" :src="require('../../assets/background.jpg')"/>
       <div class="content-overlay">
         <div style="padding: 5em 3em 5em 3em; text-align: left; transform: rotate(-10deg);">
           <span class="content-title">About Me</span>
@@ -11,7 +11,7 @@
             <li>WarThunder player, poilet of Spitfire🇬🇧</li>
             <li>Fan of Boston Celtics🏀 (Jayson Tatum rocks!!</li>
             <li>Mostly live in the night, <span style="font-style:italic">Tender Is The Night✨</span></li>
-            <li>While at the end, I am a programmer and a <span style="font-weight: bold">True Detective</span> (of 🐛</li>
+            <li>While at the end, I am a programmer and a detective of 🐛</li>
           </ul>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default {
   flex-grow: 0.45;
   transform: rotate(10deg);
   position: absolute;
-  left: 50%;
+  left: 55%;
   height: 100%;
 }
 .bottom-overlay {
