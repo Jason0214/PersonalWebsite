@@ -1,7 +1,7 @@
 <template>
   <div class="blog-container">
     <div class="blog-card" v-for="(blog, index) in blogs" :key="index" @click="gotoBlogPage(index)">
-      <img class="blog-avatar" :src="blog.cover" />
+      <img class="blog-avatar" v-lazy="blog.cover" />
       <div style="flex-grow: 1;">
         <div class="blog-title">{{blog.title}}</div>
         <div class="blog-snippet">{{blog.abstract}}</div>

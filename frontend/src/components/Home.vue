@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="main-content">
-      <img class="content-background" :src="require('../../assets/background.jpg')"/>
+      <img class="content-background" v-lazy="require('../../assets/background.jpg')"/>
       <div class="content-overlay">
         <div style="padding: 5em 3em 5em 3em; text-align: left; transform: rotate(-10deg);">
           <span class="content-title">About Me</span>
@@ -58,7 +58,7 @@ export default {
   z-index: -2;
   max-width: 100%;
   height: auto;
-  right: 40%;
+  right: 35%;
   position: absolute;
   background-position: right top;
 }
