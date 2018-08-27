@@ -58,7 +58,7 @@ function generateThumbNail (srcPath, width, height, outputPath, quality = 75) {
 async function rewriteImageUrl (markdownText) {
   // reference: https://stackoverflow.com/questions/33631041/javascript-async-await-in-replace
   const imageUrlPromises = [];
-  const imageUrlRegex = /!\[([^\]]+)\]\(([^)]+)\)/;
+  const imageUrlRegex = /!\[([^\]]+)\]\(([^)]+)\)/g;
   markdownText.replace(imageUrlRegex, function (match, g1, g2) {
     if (!g2.startsWith('/static/')) {
       let newImageUrlPromise = downloadImage(g2)

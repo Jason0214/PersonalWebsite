@@ -44,6 +44,7 @@ async function updateBlog (postedBlogName) {
   let cover = await generateBlogCover(parsedText);
   let blogHeader = new BlogHeader(title, abstract, cover, blogId);
   await updateBlogHeader(blogHeader);
+  await fs.saveToFile(blogId2FilePath(blogId), parsedText);
 }
 
 export {
