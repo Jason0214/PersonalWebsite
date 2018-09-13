@@ -6,7 +6,7 @@ People may familiar with RGB color space due to its simplicity for picking and m
 
 Both HSV (hue, saturation, value) and HSL (hue, saturation, lightness) color can be easily visualized by a cylinder, these two color space use the same design with just a little difference in saturation and lightness amplitude.
 
-![HSV cylinder](https://en.wikipedia.org/wiki/File:HSV_color_solid_cylinder_saturation_gray.png)
+![HSV cylinder](https://upload.wikimedia.org/wikipedia/commons/3/33/HSV_color_solid_cylinder_saturation_gray.png)
 
 **some useful terminology**
 - **tint**: color mix with white
@@ -44,8 +44,37 @@ Note that, either hexcone and double hexcone, the third parameter (which named a
 For detailed illustration see [1](https://en.wikipedia.org/wiki/Cylindrical-coordinate_color_model), it has fantastic explanation.
 
 ### Color gamma
+The conecpt of color gamma is coming from human perception of color. Human eye does not perceive light linearly to amount of photons eye receives (camera does that).
+
+According to [[4]](https://www.cambridgeincolour.com/tutorials/gamma-correction.htm)
+
+>Compared to a camera, we are much more sensitive to changes in dark tones than we are to similar changes in bright tones. There's a biological reason for this peculiarity: it enables our vision to operate over a broader range of luminance. Otherwise the typical range in brightness we encounter outdoors would be too overwhelming.
+
+A simple illustration:
+
+![perception_vs_actual_lum](https://cdn.cambridgeincolour.com/images/tutorials/gamma_chart1e.png)
+
+#### Monitor gamma
+In order to fit with human eye's perception, all the modern monitor has what it displays nonlinear to the its input color data, more accurately, it use a exponential formula with its exponent called **gamma**.
+
+![gamma](https://snag.gy/PK4nWe.jpg)
+
+A widely used gamma value is 2.2 and A is 1, but note that it is only an approximation, more accurate gamma formula exists in some image process libraries.
+
+#### Image storage gamma
+Most image processing and graphics render application are working in linear color space, as it has a lot of advantages, for example, if you want to add two images' effection, you just need to sum up the RGB values. However, this sum up is under the assumption that human eye will perceive the color linearly, so you need an addtional step to cancel the gamma converting applied by moniter. (More on [[5]](https://graphicdesign.stackexchange.com/questions/46768/why-do-i-have-to-use-a-gamma-of-2-2-when-using-a-jpeg-picture)
+
+Instead of doing this gamma correction in display image, a more computing saving approach is to directly apply the gamma correction onto stored image file, thus avoid doing gamma correction in displaying every frame. Most image and video file format such as JPEG and MPEG already has its contained data gamma corrected.
+
+#### Non color texture
+You may have seen an option `Non-Color` for image texture in some game engine or 3d assets software. Now you may have known why it is needed. Because the gamma value is directly encoded in image files, for an `Non-Color` texture such as normal map, you would like it to use its original value. In that case configued it as `Non-Color` would do an additional gamma correction to convert to its true RGB while loading the texture.
 
 
 ### Reference
-[1] https://en.wikipedia.org/wiki/Cylindrical-coordinate_color_model
+[1] https://en.wikipedia.org/wiki/HSL_and_HSV
 [2] http://infohost.nmt.edu/tcc/help/pubs/colortheory/web/hsv.html
+[3] https://en.wikipedia.org/wiki/Gamma_correction
+[4] https://www.cambridgeincolour.com/tutorials/gamma-correction.htm
+[5] https://graphicdesign.stackexchange.com/questions/46768/why-do-i-have-to-use-a-gamma-of-2-2-when-using-a-jpeg-picture
+[6] *Fundamentals of Computer Graphics* 3rd Edition, Chapter 3.3
+[7] https://docs.blender.org/manual/en/dev/render/post_process/color_management.html
