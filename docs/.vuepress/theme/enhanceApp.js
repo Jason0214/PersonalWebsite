@@ -1,4 +1,4 @@
-import Home from "./components/Home.vue"
+import Home from "./layouts/Home.vue"
 
 export default ({
     Vue, // the version of Vue being used in the VuePress app

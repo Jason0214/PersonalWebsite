@@ -9,14 +9,7 @@
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
-    <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
-      <template #top>
-        <slot name="sidebar-top" />
-      </template>
-      <template #bottom>
-        <slot name="sidebar-bottom" />
-      </template>
-    </Sidebar>
+    <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar"/>
 
     <Page :sidebar-items="sidebarItems" :front-matters="pageFrontMatters">
       <template #top>
