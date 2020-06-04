@@ -68,11 +68,7 @@ export default {
 
     shouldShowSidebar() {
       const { frontmatter } = this.$page;
-      return (
-        !frontmatter.home &&
-        frontmatter.sidebar !== false &&
-        this.sidebarItems.length
-      );
+      return frontmatter.sidebar !== false && this.sidebarItems.length;
     },
 
     sidebarItems() {
