@@ -5,6 +5,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "vuepress": "^1.5.0"
+    "vuepress": "^1.5.0",
+    "watchpack": "^1.6.1"
   }
 }
