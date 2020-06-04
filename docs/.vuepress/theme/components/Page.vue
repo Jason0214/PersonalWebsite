@@ -2,12 +2,14 @@
   <main class="page">
     <slot name="top" />
 
-    <h1 :id="titleToId(frontMatters.title)">
-      <a :href="'\#' + titleToId(frontMatters.title)" class="header-anchor">#</a>
-      {{ frontMatters.title }}
-    </h1>
+    <div class="theme-astrid-content">
+      <h1 :id="titleToId(frontMatters.title)">
+        <a :href="'\#' + titleToId(frontMatters.title)" class="header-anchor">#</a>
+        {{ frontMatters.title }}
+      </h1>
+    </div>
 
-    <Content class="theme-default-content" />
+    <Content class="theme-astrid-content" />
     <PageEdit />
 
     <PageNav v-bind="{ sidebarItems }" />
