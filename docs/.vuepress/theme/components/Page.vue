@@ -7,9 +7,9 @@
         <a :href="'\#' + titleToId(frontMatters.title)" class="header-anchor">#</a>
         {{ frontMatters.title }}
       </h1>
+      <Content />
     </div>
 
-    <Content class="theme-astrid-content" />
     <PageEdit />
 
     <PageNav v-bind="{ sidebarItems }" />
