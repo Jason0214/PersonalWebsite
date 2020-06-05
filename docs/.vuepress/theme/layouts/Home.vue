@@ -107,10 +107,6 @@ export default {
 <style scoped lang="stylus">
 @require '../styles/wrapper.styl';
 
-add(a, b) {
-  a + b;
-}
-
 .page {
   @extend $wrapper;
   display: flex;
@@ -143,7 +139,7 @@ add(a, b) {
     margin-top: 1em;
     margin-bottom: 1em;
     font-family: 'Roboto', sans-serif;
-    color: add($textColor, 0x 10101);
+    color: lighten($textColor, 20%);
   }
 
   .footer svg {
