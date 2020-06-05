@@ -2,6 +2,9 @@ module.exports = {
     base: "/",
     title: 'HOME',
     themeConfig: {
+        nav: [
+            { text: 'Posts', link: '/' },
+        ],
         searchPlaceholder: 'Search...',
         lastUpdated: 'Last Updated by lujc',
         nextLinks: false,

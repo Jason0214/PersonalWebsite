@@ -15,7 +15,7 @@
     <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar" />
 
     <div class="page">
-      <div v-for="(page, page_idx) in getSortedPages($site.pages)">
+      <div v-for="(page, page_idx) in getSortedPostsPages($site.pages)">
         <div v-if="page_idx > 0" class="sep"></div>
         <div class="item" @click="$router.push(page.path)">
           <div class="title">{{page.title}}</div>
@@ -69,16 +69,16 @@ export default {
         "......"
       );
     },
-    getSortedPages(pages) {
+    getSortedPostsPages(pages) {
       return pages
+        .filter(page => {
+          return page.path.startsWith("/posts/");
+        })
         .sort((a, b) => {
           if (Date.parse(a.frontmatter.date) > Date.parse(b.frontmatter.date)) {
             return -1;
           }
           return 1;
-        })
-        .filter(page => {
-          return page.path != "/";
         });
     },
     sidebarItems() {

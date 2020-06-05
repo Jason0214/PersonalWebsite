@@ -9,7 +9,7 @@ module.exports = {
         {
             path: "/",
             frontmatter: {
-                layout: 'Home'
+                layout: 'PostsHomePage'
             }
         }
     ]
