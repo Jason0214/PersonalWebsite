@@ -55,6 +55,9 @@ export default {
   },
   methods: {
     getPostPreview(excerpt) {
+      if(!excerpt) {
+        return "......";
+      }
       return (
         excerpt.replace(/<\/?[^>]+(>|$)/g, "").replace(/[,.?!]\s*$/, "") +
         "......"
