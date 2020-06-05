@@ -4,5 +4,13 @@ module.exports = {
         '@vuepress/plugin-active-header-links',
         '@vuepress/google-analytics',
         'vuepress-plugin-smooth-scroll'
+    ],
+    additionalPages: [
+        {
+            path: "/",
+            frontmatter: {
+                layout: 'Home'
+            }
+        }
     ]
 }

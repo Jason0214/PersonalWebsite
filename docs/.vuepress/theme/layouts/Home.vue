@@ -69,7 +69,7 @@ export default {
           return -1;
         }
         return 1;
-      })
+      }).filter((page) => { return page.path != "/" })
     },
     sidebarItems() {
       return resolveSidebarItems(
