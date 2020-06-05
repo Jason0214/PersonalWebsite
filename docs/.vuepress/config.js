@@ -1,5 +1,10 @@
 module.exports = {
     base: "/",
-    title: 'Hello VuePress',
-    description: 'Just playing around',
+    title: 'HOME',
+    themeConfig: {
+        searchPlaceholder: 'Search...',
+        lastUpdated: 'Last Updated by lujc',
+        nextLinks: false,
+        prevLinks: false,
+    }
 }
