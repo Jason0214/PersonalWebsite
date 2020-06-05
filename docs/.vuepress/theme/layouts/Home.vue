@@ -1,8 +1,10 @@
 <template>
-  <div class="theme-container no-sidebar"
-      :class="{ 'sidebar-open': isSidebarOpen }"
-      @touchstart="onTouchStart"
-      @touchend="onTouchEnd">
+  <div
+    class="theme-container no-sidebar"
+    :class="{ 'sidebar-open': isSidebarOpen }"
+    @touchstart="onTouchStart"
+    @touchend="onTouchEnd"
+  >
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap"
       rel="stylesheet"
@@ -10,22 +12,22 @@
 
     <Navbar @toggle-sidebar="toggleSidebar" />
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
-    <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar"/>
+    <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar" />
 
     <div class="page">
       <div v-for="(page, page_idx) in getSortedPages($site.pages)">
         <div v-if="page_idx > 0" class="sep"></div>
-        <div class="item"  @click="$router.push(page.path)">
+        <div class="item" @click="$router.push(page.path)">
           <div class="title">{{page.title}}</div>
           <div class="description">{{getPostPreview(page.excerpt)}}</div>
           <div class="footer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock" > <circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14" /> </svg>
+            <TimeSvg />
             {{page.frontmatter.date.split("T")[0]}}
           </div>
           <div class="footer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" > <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" /> <line x1="7" y1="7" x2="7" y2="7" /> </svg>
+            <TagSvg />
             <span v-for="(tag, tag_idx) in page.frontmatter.tags">
-              <span v-if="tag_idx > 0">, </span>
+              <span v-if="tag_idx > 0">,</span>
               {{tag}}
             </span>
           </div>
@@ -38,24 +40,28 @@
 <script>
 import Navbar from "@theme/components/Navbar.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
+import TagSvg from "@theme/svg/Tag.vue";
+import TimeSvg from "@theme/svg/Time.vue";
 import { resolveSidebarItems } from "../util";
 export default {
   name: "Home",
   components: {
     Navbar,
-    Sidebar
+    Sidebar,
+    TimeSvg,
+    TagSvg
   },
   data() {
     return {
       isSidebarOpen: false
-    }
+    };
   },
-  mounted () {
-    this.isSidebarOpen = false
+  mounted() {
+    this.isSidebarOpen = false;
   },
   methods: {
     getPostPreview(excerpt) {
-      if(!excerpt) {
+      if (!excerpt) {
         return "......";
       }
       return (
@@ -64,12 +70,16 @@ export default {
       );
     },
     getSortedPages(pages) {
-      return pages.sort((a, b) => {
-        if(Date.parse(a.frontmatter.date) > Date.parse(b.frontmatter.date)) {
-          return -1;
-        }
-        return 1;
-      }).filter((page) => { return page.path != "/" })
+      return pages
+        .sort((a, b) => {
+          if (Date.parse(a.frontmatter.date) > Date.parse(b.frontmatter.date)) {
+            return -1;
+          }
+          return 1;
+        })
+        .filter(page => {
+          return page.path != "/";
+        });
     },
     sidebarItems() {
       return resolveSidebarItems(
@@ -159,5 +169,4 @@ export default {
     display: block;
   }
 }
-
 </style>
