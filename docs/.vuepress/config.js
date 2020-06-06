@@ -4,6 +4,7 @@ module.exports = {
     themeConfig: {
         nav: [
             { text: 'Posts', link: '/' },
+            { text: 'Photos', link: '/photos/photos' },
         ],
         searchPlaceholder: 'Search...',
         lastUpdated: 'Last Updated by lujc',
