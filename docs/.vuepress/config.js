@@ -4,12 +4,12 @@ module.exports = {
     themeConfig: {
         nav: [
             { text: 'Posts', link: '/' },
-            { text: 'Photos', link: '/photos/photos' },
             {
                 text: 'Misc', type: 'links',
                 items: [
-                    { text: 'My Celtics', link: '/celtics/celtics' },
                     { text: 'Playlists', link: '/channel-links' },
+                    { text: 'Photography', link: '/photos/photos' },
+                    { text: 'My Celtics', link: '/celtics/celtics' },
                 ]
             }
         ],
