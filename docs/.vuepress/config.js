@@ -5,6 +5,13 @@ module.exports = {
         nav: [
             { text: 'Posts', link: '/' },
             { text: 'Photos', link: '/photos/photos' },
+            {
+                text: 'Misc', type: 'links',
+                items: [
+                    { text: 'My Celtics', link: '/celtics/celtics' },
+                    { text: 'Playlists', link: '/channel-links' },
+                ]
+            }
         ],
         searchPlaceholder: 'Search...',
         lastUpdated: 'Last Updated by lujc',
