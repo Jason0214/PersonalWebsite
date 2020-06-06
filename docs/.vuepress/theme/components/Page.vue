@@ -3,7 +3,7 @@
     <slot name="top" />
 
     <div class="theme-astrid-content">
-      <h1 :id="titleToId(frontMatters.title)">
+      <h1 v-if="frontMatters.title" :id="titleToId(frontMatters.title)">
         <a :href="'\#' + titleToId(frontMatters.title)" class="header-anchor">#</a>
         {{ frontMatters.title }}
       </h1>
