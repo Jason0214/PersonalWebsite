@@ -35,5 +35,10 @@ module.exports = {
                 layout: 'PostsHomePage'
             }
         }
-    ]
+    ],
+    markdown: {
+        plugins: [
+            "markdown-it-image-lazy-loading"
+        ]
+    }
 }
