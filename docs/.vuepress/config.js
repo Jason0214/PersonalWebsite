@@ -13,13 +13,13 @@ module.exports = {
     },
     plugins: [
         [
-            'vuepress-plugin-smooth-scroll',
-            '@vuepress/plugin-active-header-links',
             '@vuepress/google-analytics',
             {
                 'ga': 'UA-168687988-1'
             }
-        ]
+        ],
+        'vuepress-plugin-smooth-scroll',
+        '@vuepress/plugin-active-header-links',
     ],
     additionalPages: [
         {
