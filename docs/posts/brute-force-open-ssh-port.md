@@ -5,14 +5,14 @@ date: 2020-06-01
 tags: [ network ]
 ---
 
-I was living in a hotel in the qurantine time, which has a very bad network.
+I was living in a hotel in the quarantine time, which has a very bad network.
 While I was doing some network configuration checking, I accidentally found the ssh port of the router is open.
 
 <!-- more -->
 
 ## Scan open ports
 
-I was scanning the router for an open HTTP port where I found its ssh port openning.
+I was scanning the router for an open HTTP port where I found its ssh port opening.
 ``` bash
     nmap $TARGET_IP
 ```
@@ -41,9 +41,9 @@ Use a [dictionary](https://github.com/danielmiessler/SecLists)
 ```
 
 ## User locked
-Afte 10 tries, the `root` was locked.
+After 10 tries, the `root` was locked.
 Looks like it is a Cisco router with [Login Password Retry Lockout](https://www.cisco.com/en/US/docs/ios-xml/ios/sec_usr_aaa/configuration/15-2mt/sec-login-pw-retry.html#GUID-CA5A3F7D-E324-490E-B551-802924411091).
-Had to adimit it is secure to me :relieved:.
+Had to admit it is secure to me :relieved:.
 
 ## Reference
 - [https://serverfault.com/questions/938149/how-to-test-if-ssh-server-allows-passwords](https://serverfault.com/questions/938149/how-to-test-if-ssh-server-allows-passwords)

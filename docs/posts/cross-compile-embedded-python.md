@@ -25,7 +25,7 @@ It is fairly straightforward to run python on those devices.
 
 ## Cross compile python embedded C program on Beagle Bone Green
 
-Here I use an example of Beagle Bone Green which has an ARM architecture and officiall Debian operating system support.
+Here I use an example of Beagle Bone Green which has an ARM architecture and official Debian operating system support.
 
 When cross compiling on host, python libraries and headers on your device need to be accessible.
 Here are some useful tools that can help to locate the libraries:

@@ -6,14 +6,15 @@ tags: [ network ]
 ---
 
 I have a proxy server that works well, but recently I was quite suffering from the bad networking (very high latency and packet loss) accessing my server.
-I have managed to setup another closeby server to do a NAT transfer, which (at least parially) solved the issue.
+
+I have managed to setup another closeby server to do a NAT transfer, which (at least partially) solved the issue.
 
 <!-- more -->
 
 ## NAT through iptables
 `iptables` is quite handy to use to setup a NAT.
 Set up a TCP NAT only takes two rules, while a UDP one may be more complex.
-Here is a TCP exmaple:
+Here is a TCP example:
 ``` bash
 sudo iptables -t nat -A PREROUTING -p tcp --dport $DST_SERVER_PORT\
     -j DNAT --to-destination $DST_SERVER_IP:$DST_SERVER_PORT
@@ -21,23 +22,20 @@ sudo iptables -t nat -A POSTROUTING -p tcp -d $DST_SERVER_IP --dport $DST_SERVER
     -j SNAT --to-source $LOCAL_PRIVATE_IP
 ```
 
-Make the your request send to NAT server set the `dst port` to the listening port of your destination server.
-These two rules does not change the `dst port`.
-
-Also remember to tamper the source IP of the packets.
-Set it to the NAT server's private IP instead of its public IP.
-It could be very common that your rented NAT server is running behind another NAT.
+Note that:
+1. These two rules do not change the `dst port`, make sure to set the listening port of the NAT server the same as the destination server.
+2. when tampering the source IP of the packets, make it the NAT server's private IP instead of the public. It could be very likely that your rented NAT server is also running behind another NAT.
 
 ## Verify NAT works
 Running `tcptrack` on your NAT server to check the traffic
 ``` bash
 sudo tcptrack -i eth0
 ```
-If the setting is good, you will see two ESTABLISHED connectionss for every incoming TCP connection (exactly a NAT will do).
+If the setting is good, you will see two ESTABLISHED connections for every incoming TCP connection (exactly a NAT will do).
 
 ## Add firewall rule to allow only specific IPs 
 If you are sure that clients will connect to your NAT server from a static IP or subnet.
-You'd better configure it as a fireware rule, so that bandwidth can be saved from transfering random packets in the network.
+You'd better configure it as a firewall rule, so that bandwidth can be saved from transferring random packets in the network.
 
 ``` bash
 # New chain
