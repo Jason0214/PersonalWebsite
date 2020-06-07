@@ -25,7 +25,7 @@ export default {
       isSidebarOpen: false
     };
   },
-  async mounted() {
+  mounted() {
     this.isSidebarOpen = false;
   },
   methods: {
