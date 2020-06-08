@@ -35,7 +35,11 @@ If the setting is good, you will see two ESTABLISHED connections for every incom
 
 ## Add firewall rule to allow only specific IPs 
 If you are sure that clients will connect to your NAT server from a static IP or subnet.
-You'd better configure it as a firewall rule, so that bandwidth can be saved from transferring random packets in the network.
+It would be better configure it to a firewall rule, so that bandwidth can be saved from transferring random packets in the network.
+
+![1](http://linux-training.be/networking/images/iptables_filter.png)
+
+Note the firewall for NAT goes to FORWARD instead of INPUT.
 
 ``` bash
 # New chain
@@ -45,7 +49,7 @@ sudo iptables -N NAT_WHITE_LIST
 sudo iptables -A NAT_WHITE_LIST -d $ALLOWED_DOMAINS -j ACCEPT
 sudo iptables -A NAT_WHITE_LIST -j DROP
 
-# Enable chain on INPUT and NAT port 
-sudo iptables -A INPUT -p tcp --dport $DST_SERVER_PORT -j NAT_WHITE_LIST
+# Enable chain on FORWARD and NAT port 
+sudo iptables -A FORWARD -p tcp --dport $DST_SERVER_PORT -j NAT_WHITE_LIST
 ```
 
