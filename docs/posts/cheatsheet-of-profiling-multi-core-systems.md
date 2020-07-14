@@ -178,6 +178,11 @@ TODO: [https://github.com/stefannoll/mat](https://github.com/stefannoll/mat)
 
 TODO: [Analyzing Memory Accesses With Modern Processors](https://dl.acm.org/doi/pdf/10.1145/3399666.3399896)
 
+## Pahole (Poke a Hole)
+Static analysis to show "holes" (unused bytes, unfilled cacheline) in your data structure due to alignment. 
+
+TODO: [https://lwn.net/Articles/335942/](https://lwn.net/Articles/335942/)
+
 
 ## Reference:
 - [https://unix.stackexchange.com/questions/57920/how-do-i-know-which-processors-are-physical-cores](https://unix.stackexchange.com/questions/57920/how-do-i-know-which-processors-are-physical-cores)
