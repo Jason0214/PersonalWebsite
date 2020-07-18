@@ -45,12 +45,15 @@ Note the firewall for NAT goes to FORWARD instead of INPUT.
 # New chain
 sudo iptables -N NAT_WHITE_LIST
 
-# ACCEPT known IPs, DROP others
-sudo iptables -A NAT_WHITE_LIST -d $ALLOWED_DOMAINS -j ACCEPT
+# Accept the proxy server
+sudo iptables -A NAT_WHILE_LIST --source $DST_SERVER_IP -j RETURN
+# Accept known IPs
+sudo iptables -A NAT_WHITE_LIST --source $ALLOWED_DOMAINS -j RETURN 
+# DROP others
 sudo iptables -A NAT_WHITE_LIST -j DROP
 
 # Enable chain on FORWARD and NAT port 
-sudo iptables -A FORWARD -p tcp --dport $DST_SERVER_PORT -j NAT_WHITE_LIST
+sudo iptables -A FORWARD -j NAT_WHITE_LIST
 ```
 
 ## Reference
