@@ -10,16 +10,16 @@ Make Raspberry Pi 4 an access point -- and further a transparent proxy.
 <!-- more -->
 
 ## Setup Raspberry Pi 4 headlessly
-I have bought a Raspberry Pi 4 recently.
-In my first experience,
+I bought a Raspberry Pi 4 recently.
+In the first experience,
 I am a little surprised that Pi can not be easily setup in a headless way.
-Pi 4 is so powerful that can speak "just use it as a PC",
-documentations tell you to connect a display, a keyboard and a mouse, which is kinda annoying.
+Probably Pi 4 is so powerful that can speak "just use it as a PC",
+which might be the reason that documentations just tell you to connect a display, a keyboard and a mouse to set it up.
 
-Anyway, I found a relatively easy way to do it by looking online.
-Wifi config can be written to the OS image of Pi, then put the image on a SD-card to boot the Pi.
-Once boot up, Pi is automatically connected to Wifi and you can access it using `ssh`.
-Check out [headless-raspberry-pi-4-ssh-wifi-setup](https://desertbot.io/blog/headless-raspberry-pi-4-ssh-wifi-setup) for details.
+Anyway, I found a relatively easy way to setup Pi it by searching online.
+The idea is to connect Pi to your wireless network in boot up.
+The post [headless-raspberry-pi-4-ssh-wifi-setup](https://desertbot.io/blog/headless-raspberry-pi-4-ssh-wifi-setup) gives instructions to write Wifi config to the OS image, then put the image on a SD-card and boot Pi from it.
+Once boot up, hopefully Pi is automatically connected to Wifi and you can access it using `ssh`.
 
 ## Requirements 
 Ensure the WLAN support "AP" mode by checking
@@ -29,7 +29,7 @@ $ iw list
 
 Raspberry Pi 4 has it supported.
 
-Install the following applications before you start, you may lost internet connection during configurating your WLAN.
+Install the following applications before you start, as you may lose internet connection in configuring your WLAN.
 ``` bash
 sudo apt instal hostapd # For access point
 sudo apt instal dnsmasq # For DHCP and DNS service
@@ -51,10 +51,10 @@ Providing internet access in AP mode could be done using either [Bridge](https:/
 The following content is my step by step **NAT** setting up, I consider it a good complement to the official documentation linked above. I also extend my Pi to be a transparent proxy, which is pretty straight-forward once you get the AP working.
 
 ## Release wireless interface from network manager
-Before setting up an access point on the builtin WLAN, it needs to be released from being used as a wireless client.
+To set up an access point on the builtin WLAN, WLAN needs to be released from being used as a wireless client.
 `wpa_supplicant` is the default network manager on raspberry Pi.
-It the one being used to connect to a wifi in boot up in the post I linked about setting up P
-By default `wpa_supplicant` manages the WLAN to be the wireless, while here WLAN needs to be released from it to be further configured as an access point.
+It is the one being used to in the post I linked to booting up Pi with a wireless connection.
+Here releasing WLAN from `wpa_supplicant`, which configures the WLAN to be the wireless client, and let an access point service manage it.
 
 Add the following two lines to `/etc/dhcpcd.conf`,
 `dhcpcd` is the default DHCP client on raspberry pi, the configuration change sets a static IP address to `wlan0` and releases it from the network manager.
