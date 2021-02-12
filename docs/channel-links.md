@@ -21,10 +21,6 @@
 </div>
 
 <div class='embed-container'>
-<iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/videoseries?list=PL4FOvDADCkBkpE86zoFXrRjj7TECNDcyC" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>
-</div>
-
-<div class='embed-container'>
 <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLmNLRllxw4hB6u-1X9vi7uxEZYGKmX37o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
