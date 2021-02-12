@@ -9,7 +9,6 @@ module.exports = {
                 items: [
                     { text: 'Playlists', link: '/channel-links' },
                     { text: 'Photography', link: '/photos/photos' },
-                    { text: 'My Celtics', link: '/celtics/celtics' },
                 ]
             }
         ],
