@@ -1,6 +1,6 @@
 module.exports = {
     base: "/",
-    title: 'HOME',
+    // title: 'HOME',
     themeConfig: {
         nav: [
             { text: 'Posts', link: '/' },
