@@ -1,6 +1,10 @@
 <style>.embed-container { position: relative; padding-bottom: 39.375%; height: 0; overflow: hidden; max-width: 70%; } @media(max-width: 959px) { .embed-container { padding-bottom: 56.25%; max-width: 100%; } } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 2px; }</style>
 
 <div class='embed-container'>
+<iframe loading="lazy" src="https://www.youtube.com/embed/BOcgR8BDYv8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<div class='embed-container'>
 <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLixt_4jBlVZwTZe0DTLaLS4CphvNwz1mp" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
