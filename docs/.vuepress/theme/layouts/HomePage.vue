@@ -15,24 +15,61 @@
     <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar" />
 
     <div class="page">
-      <div v-for="(page, page_idx) in getSortedPostsPages($site.pages)">
-        <div v-if="page_idx > 0" class="sep"></div>
-        <div class="item" @click="$router.push(page.path)">
-          <div class="title">{{page.title}}</div>
-          <div class="description">{{getPostPreview(page.excerpt)}}</div>
-          <div class="footer">
-            <TimeSvg />
-            {{page.frontmatter.date.split("T")[0]}}
-          </div>
-          <div class="footer">
-            <TagSvg />
-            <span v-for="(tag, tag_idx) in page.frontmatter.tags">
-              <span v-if="tag_idx > 0">,</span>
-              {{tag}}
-            </span>
+      <!-- auchor is buggy: https://github.com/vuejs/vuepress/issues/1499 -->
+      <div class="section" id="posts">
+        <div class="section-title">
+          <span>Posts</span>
+        </div>
+        <div class="section-content">
+          <div v-for="(page, page_idx) in getSortedPagesWithPath($site.pages, '/posts/')">
+            <div v-if="page_idx > 0" class="sep"></div>
+            <div class="item" @click="$router.push(page.path)">
+              <div class="title">{{page.title}}</div>
+              <div class="description">{{getPagePreview(page)}}</div>
+              <div class="footer">
+                <TimeSvg />
+                {{getPageDate(page)}}
+              </div>
+              <div class="footer">
+                <TagSvg />
+                <span v-for="(tag, tag_idx) in page.frontmatter.tags">
+                  <span v-if="tag_idx > 0">,</span>
+                  {{tag}}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="section-sep"></div>
+
+      <div class="section" id="readings">
+        <div class="section-title">
+          <span>Readings</span>
+        </div>
+        <div class="section-content">
+          <div v-for="(page, page_idx) in getSortedPagesWithPath($site.pages, '/readings/')">
+            <div v-if="page_idx > 0" class="sep"></div>
+            <div class="item" @click="$router.push(page.path)">
+              <div class="title">{{page.title}}</div>
+              <div class="description">{{getPagePreview(page)}}</div>
+              <div class="footer">
+                <TimeSvg />
+                {{getPageDate(page)}}
+              </div>
+              <div class="footer">
+                <TagSvg />
+                <span v-for="(tag, tag_idx) in page.frontmatter.tags">
+                  <span v-if="tag_idx > 0">,</span>
+                  {{tag}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -60,19 +97,22 @@ export default {
     this.isSidebarOpen = false;
   },
   methods: {
-    getPostPreview(excerpt) {
-      if (!excerpt) {
+    getPagePreview(page) {
+      if (!page.excerpt) {
         return "......";
       }
       return (
-        excerpt.replace(/<\/?[^>]+(>|$)/g, "").replace(/[,.?!]\s*$/, "") +
+        page.excerpt.replace(/<\/?[^>]+(>|$)/g, "").replace(/[,.?!]\s*$/, "") +
         "......"
       );
     },
-    getSortedPostsPages(pages) {
+    getPageDate(page) {
+      return page.frontmatter.date.split("T")[0];
+    },
+    getSortedPagesWithPath(pages, path) {
       return pages
         .filter(page => {
-          return page.path.startsWith("/posts/");
+          return page.path.startsWith(path);
         })
         .sort((a, b) => {
           if (Date.parse(a.frontmatter.date) > Date.parse(b.frontmatter.date)) {
@@ -121,7 +161,37 @@ export default {
   @extend $wrapper;
   display: flex;
   flex-direction: column;
-  padding-top: $navbarHeight + 1rem;
+  padding-top: $navbarHeight;
+}
+
+.section 
+  display flex
+  flex-direction row
+  @media (max-width: $MQMobile)
+    flex-direction column
+
+.section-title
+  font-size 2em
+  margin-left -3em
+  padding-left 1em
+  flex 0 0 5em
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-color $borderColor
+  border-top 1px solid
+  @media (max-width: $MQNarrow)
+    margin-left 0
+  @media (max-width: $MQMobile)
+    margin-left 0
+    padding-left 0
+    flex: 0 0 1em
+
+.section-content
+  display flex
+  flex-direction column
+
+.section-sep {
+  width: 100%;
+  height: 4rem;
 }
 
 .sep {
@@ -138,7 +208,7 @@ export default {
   .title {
     color: $textColor;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 2em;
+    font-size: 1.5em;
   }
 
   &:hover .title {

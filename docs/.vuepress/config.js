@@ -3,7 +3,8 @@ module.exports = {
     // title: 'HOME',
     themeConfig: {
         nav: [
-            { text: 'Posts', link: '/' },
+            { text: 'Posts', link: '/#posts' },
+            { text: 'Readings', link: '/#readings' },
             {
                 text: 'Misc', type: 'links',
                 items: [
@@ -31,7 +32,7 @@ module.exports = {
         {
             path: "/",
             frontmatter: {
-                layout: 'PostsHomePage'
+                layout: 'HomePage'
             }
         }
     ],
