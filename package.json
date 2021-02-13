@@ -13,5 +13,6 @@
     "watchpack": "^1.6.1",
     "ip": "^1.1.5",
     "lodash.template": "^4.5.0"
-  }
+  },
+  "dependencies": {}
 }
