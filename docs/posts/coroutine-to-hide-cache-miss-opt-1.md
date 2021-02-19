@@ -138,8 +138,7 @@ A chain of coroutines, whether two-level and nested,
 are all executed from `coroutine_handle<void>.resume()` in `scheduler`.
 The number of `coroutine_handle<void>.resume()` gets called is same for two-level and nested,
 which depends on the added suspending points.
-Two-level eliminites the function calls inside each `coroutine_handle<void>.resume()`
-which are the `co_await <expr>`s
+Two-level only eliminites the `co_await <expr>` calls inside each `coroutine_handle<void>.resume()`
 (and two-level made the assumption that the linked list can only has two nodes, but I think that is neglectable).
 
 The following text describes some of my ideas and practices to try to inline the `co_await <expr>`.
