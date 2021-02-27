@@ -170,7 +170,8 @@ template <typename T> struct task<T>::awaiter {
 +   suspended_task_coroutine_.resume();
 +   // Force coroutine with no suspending points invalid.
 +   ASSERT(!suspended_task_coroutine_.done());
-    return suspended_task_coroutine_;
+-    return suspended_task_coroutine_;
++    return void;
   }
   
   constexpr bool await_ready() const noexcept {
@@ -213,7 +214,10 @@ _ZNK12promise_base8get_leafEv.exit:               ; preds = %_ZNK12promise_base8
   ret void
 ...
 ```
-We are getting direct call to `ChainedCoroCall<4>(int*).resume`!
+~~We are getting direct call to `ChainedCoroCall<4>(int*).resume`!~~
+
+(Edit: When `return suspended_task_coroutine_`, the suspended task will be resumed immediately. So there is no new direct call here compared to Corobase)
+
 If we can somehow get some attributes passed into the optimization pass or even tweak the optimizer,
 we can definitely inline this.
 I will leave the actual inling and performance comparison for the next post.
