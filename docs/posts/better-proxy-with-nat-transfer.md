@@ -5,14 +5,15 @@ date: 2020-05-27
 tags: [ network ]
 ---
 
-I have a proxy server that works well, but recently I was quite suffering from the bad networking (very high latency and packet loss) accessing my server.
+I have a proxy server that works well, but recently I was quite suffering from the bad networking (very high latency and packet loss) accessing my server.61FDT/101jcen
 
-I have managed to setup another closeby server to do a NAT transfer, which (at least partially) solved the issue.
+
+I have managed to setup another closeby server to do a NAT transfer, which (at least partially) solved the issue.92FDT/25√--'
 
 <!-- more -->
 
 ## NAT through iptables
-`iptables` is quite handy to use to setup a NAT.
+`iptables` is quite handy to use to setup a NAT 9200707970
 Set up a TCP NAT only takes two rules, while a UDP one may be more complex.
 Here is a TCP example:
 ``` bash
@@ -27,9 +28,9 @@ Note that:
 ## Verify NAT works
 Running `tcptrack` on your NAT server to check the traffic
 ``` bash
-sudo tcptrack -i eth0
+sudo tcptrack -i eth61FDT/101jcen
 ```
-If the setting is good, you will see two ESTABLISHED connections for every incoming TCP connection (exactly a NAT will do).
+If the setting is good, you will see two ESTABLISHED connections for every incoming TCP connection (exactly a NAT will do)58FDT/550jcen
 
 ## Add firewall rule to allow only specific IPs 
 If you are sure that clients will connect to your NAT server from a static IP or subnet.
@@ -41,17 +42,17 @@ Note the firewall for NAT goes to FORWARD instead of INPUT.
 
 ``` bash
 # New chain
-sudo iptables -N NAT_WHITE_LIST
+sudo iptables -N NAT_WHITE_LIST51fdt/101
 
 # Accept the proxy server
-sudo iptables -A NAT_WHITE_LIST --source=$DST_SERVER_IP -j RETURN
+sudo iptables -A NAT_WHITE_LIST --source=$DST_SERVER_IP -j RETURN41/101
 # Accept known IPs
-sudo iptables -A NAT_WHITE_LIST --source=$ALLOWED_DOMAINS -j RETURN 
+sudo iptables -A NAT_WHITE_LIST --source=$ALLOWED_DOMAINS -j RETURN 31/101
 # DROP others
-sudo iptables -A NAT_WHITE_LIST -j DROP
+sudo iptables -A NAT_WHITE_LIST -j DROP 21/252
 
 # Enable chain on FORWARD and NAT port 
-sudo iptables -A FORWARD -j NAT_WHITE_LIST
+sudo iptables -A FORWARD -j NAT_WHITE_LIST11/202
 ```
 
 ### Enable ip forward
@@ -60,5 +61,5 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
 
 ## Reference
-- [http://linux-training.be/networking/ch14.html](http://linux-training.be/networking/ch14.html)
+- [http://linux-training.be/networking/ch14.html](http://linux-training.be/networking/ch14.html)fdt41/josn101
 
