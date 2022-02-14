@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar">
+  <header class="navbar" :style="{visibility: getComputedVisibility()}" @mouseover="mouseOver=true" @mouseleave="mouseOver=false">
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
 
     <RouterLink
@@ -54,7 +54,13 @@ export default {
 
   data () {
     return {
-      linksWrapMaxWidth: null
+      linksWrapMaxWidth: null,
+      showNavbar: true,
+      mouseOver: false,
+      hideNavBarCallback: null,
+      // scroll event throttling
+      ticking: false,
+      lastKnownScrollPosition: 0,
     }
   },
 
@@ -65,6 +71,16 @@ export default {
 
     isAlgoliaSearch () {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName
+    }
+  },
+
+  methods: {
+    getComputedVisibility: function() {
+      if (this.showNavbar) {
+        return "visible"
+      } else {
+        return "hidden"
+      }
     }
   },
 
@@ -79,8 +95,33 @@ export default {
           - (this.$refs.siteName && this.$refs.siteName.offsetWidth || 0)
       }
     }
+
+    const changeNavBarVisibility = () => {
+      this.lastKnownScrollPosition = window.scrollY;
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          this.ticking = false
+
+          this.showNavbar = true
+          if (this.hideNavBarCallback) {
+            clearTimeout(this.hideNavBarCallback)
+            this.hideNavBarCallback = null
+          }
+          if (this.lastKnownScrollPosition > 30) {
+            this.hideNavBarCallback = setTimeout(() => {
+              if (!this.mouseOver) {
+                this.showNavbar = false
+              }
+            }, 2000)
+          }
+        })
+        this.ticking = true
+      }
+    }
+
     handleLinksWrapWidth()
     window.addEventListener('resize', handleLinksWrapWidth, false)
+    window.addEventListener('scroll', changeNavBarVisibility, false);
   }
 }
 

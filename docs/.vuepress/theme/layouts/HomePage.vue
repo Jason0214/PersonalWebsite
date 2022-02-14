@@ -15,7 +15,6 @@
     <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar" />
 
     <div class="page">
-      <!-- auchor is buggy: https://github.com/vuejs/vuepress/issues/1499 -->
       <div class="section" id="posts">
         <div class="section-title">
           <span>Posts</span>
